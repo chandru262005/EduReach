@@ -6,7 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../controllers/userController';
-import { validateRequest, userValidators } from '../validators/validators';
+import { validateRequest, userValidators } from '../validators/authValidators';
 
 const router = Router();
 
