@@ -14,7 +14,7 @@ export interface IBookDonation extends Document {
     address: string;
     scheduledDate?: Date;
   };
-  status: 'submitted' | 'approved' | 'collected' | 'distributed';
+  status: 'submitted' | 'approved' | 'collected';
 }
 
 const BookDonationSchema: Schema = new Schema({

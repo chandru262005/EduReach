@@ -8,6 +8,8 @@ export const config = {
   MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/edureach',
   JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key',
   JWT_EXPIRY: process.env.JWT_EXPIRY || '7d',
+  UPI_ID: process.env.UPI_ID || '',
+  UPI_NAME: process.env.UPI_NAME || 'EduReach',
 };
 
 export default config;

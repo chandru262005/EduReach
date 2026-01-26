@@ -7,6 +7,7 @@ import errorHandler from './middleware/errorHandler';
 import userRoutes from './routes/userRoutes';
 import adminRoutes from './routes/adminRoutes';
 import authRoutes from './routes/auth.routes';
+import donorRoutes from './routes/donorRoutes';
 import { logger } from './utils/logger';
 
 const app: Application = express();
@@ -24,6 +25,7 @@ connectDB();
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/donor', donorRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
