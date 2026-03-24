@@ -87,3 +87,36 @@ export const verifyDonor = (req: IRequest, res: Response, next: NextFunction) =>
     });
   }
 };
+
+/**
+ * Middleware to verify user is a volunteer
+ * Must be used AFTER verifyToken middleware
+ */
+export const verifyVolunteer = (req: IRequest, res: Response, next: NextFunction) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({
+        success: false,
+        message: 'Authentication required',
+      });
+    }
+
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, config.JWT_SECRET as string) as JWTPayload;
+
+    if (decoded.role !== 'volunteer') {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied. Only volunteers can access this resource',
+      });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Server error during role verification',
+    });
+  }
+};

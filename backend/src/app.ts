@@ -4,11 +4,12 @@ import helmet from 'helmet';
 import connectDB from './config/database';
 import config from './config/env';
 import errorHandler from './middleware/errorHandler';
-import userRoutes from './routes/userRoutes';
 import adminRoutes from './routes/adminRoutes';
 import authRoutes from './routes/auth.routes';
 import donorRoutes from './routes/donorRoutes';
+import volunteerRoutes from './routes/volunteerRoutes';
 import { logger } from './utils/logger';
+import path from 'path';
 
 const app: Application = express();
 
@@ -21,11 +22,14 @@ app.use(express.urlencoded({ extended: true }));
 // Connect to MongoDB
 connectDB();
 
+// Serve uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 // Routes
-app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/donor', donorRoutes);
+app.use('/api/volunteer', volunteerRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

@@ -14,6 +14,8 @@ import CreateEvent from './pages/school/CreateEvent.jsx'
 import SchoolEvents from './pages/school/SchoolEvents.jsx'
 import VolunteerDashboard from './pages/volunteer/VolunteerDashboard.jsx'
 import MyEvents from './pages/volunteer/MyEvents.jsx'
+import RegisteredEvents from './pages/volunteer/RegisteredEvents.jsx'
+import VolunteerProfile from './pages/volunteer/VolunteerProfile.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import PendingSchools from './pages/admin/PendingSchools.jsx'
 import PendingVolunteers from './pages/admin/PendingVolunteers.jsx'
@@ -128,10 +130,26 @@ function AppRoutes() {
         }
       />
       <Route
+        path="/volunteer/profile"
+        element={
+          <ProtectedRoute allowedRoles={['volunteer']}>
+            <VolunteerProfile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
         path="/volunteer/events"
         element={
           <ProtectedRoute allowedRoles={['volunteer']}>
             <MyEvents />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/volunteer/my-events"
+        element={
+          <ProtectedRoute allowedRoles={['volunteer']}>
+            <RegisteredEvents />
           </ProtectedRoute>
         }
       />

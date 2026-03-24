@@ -11,6 +11,8 @@ export interface IVolunteerProfile extends Document {
   hoursContributed: number;
   pastActivities: mongoose.Types.ObjectId[]; // References to specific events/tasks
   isVerified: boolean;
+  idProofUrl?: string;
+  idProofStatus: 'none' | 'pending' | 'approved' | 'rejected';
 }
 
 const VolunteerProfileSchema: Schema = new Schema({
@@ -23,7 +25,9 @@ const VolunteerProfileSchema: Schema = new Schema({
   }],
   hoursContributed: { type: Number, default: 0 },
   pastActivities: [{ type: Schema.Types.ObjectId, ref: 'Activity' }], // Optional: if you build an Activity module
-  isVerified: { type: Boolean, default: false }
+  isVerified: { type: Boolean, default: false },
+  idProofUrl: { type: String },
+  idProofStatus: { type: String, enum: ['none', 'pending', 'approved', 'rejected'], default: 'none' }
 });
 
 export const Volunteer = mongoose.model<IVolunteerProfile>('Volunteer', VolunteerProfileSchema);

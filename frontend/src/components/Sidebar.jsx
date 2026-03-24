@@ -24,7 +24,8 @@ const baseItemsByRole = {
   ],
   volunteer: [
     { to: '/volunteer', label: 'Overview', icon: LayoutDashboard },
-    { to: '/volunteer/events', label: 'My Events', icon: HeartHandshake },
+    { to: '/volunteer/events', label: 'Find Events', icon: BookOpen },
+    { to: '/volunteer/my-events', label: 'My Events', icon: HeartHandshake },
   ],
   admin: [
     { to: '/admin', label: 'Overview', icon: LayoutDashboard },
